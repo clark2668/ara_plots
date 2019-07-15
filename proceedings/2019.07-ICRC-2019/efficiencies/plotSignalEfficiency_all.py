@@ -100,8 +100,9 @@ for row in eff:
    row_count+=1
 
 
-plt.figure(figsize=(12,12))
-ax = plt.subplot(1,1,1)
+plt.figure(figsize=(2*11,2*8.5))
+ax = plt.subplot(2,2,1)
+ax2 = plt.subplot(2,2,2)
 '''
 ax.bar(energy, trig, 0.5, align='center', label = 'trig', color='black')
 ax.bar(energy, offset, 0.5, align='center', label='offset block', color='blue')
@@ -147,6 +148,38 @@ tb_logeV-=9
 tb_eff = data_tb['eff']
 ax.plot(tb_logeV[1:-6], tb_eff[1:-6], '-', color='grey', label='Testbed Analysis', linewidth=5)
 
+
+brian_data = np.genfromtxt("brian_eff_vs_snr.csv",delimiter=',',skip_header=1,names=['snr','c1','c2','c3','c4','c5'])
+snr_bins = brian_data['snr']
+eff_vs_snr_c1 = brian_data['c1']
+eff_vs_snr_c2 = brian_data['c2']
+eff_vs_snr_c3 = brian_data['c3']
+eff_vs_snr_c4 = brian_data['c4']
+eff_vs_snr_c5 = brian_data['c5']
+
+brian_eff_vs_snr_ave = (frac_uptime[0]*eff_vs_snr_c1) + (frac_uptime[1]*eff_vs_snr_c2) + (frac_uptime[2]*eff_vs_snr_c3) + (frac_uptime[3]*eff_vs_snr_c4) + (frac_uptime[4]*eff_vs_snr_c5)
+ax2.plot(snr_bins,brian_eff_vs_snr_ave, label='Analysis B',linestyle='-.',linewidth=7, color='blue')
+
+
+myl_data = np.genfromtxt("myl_eff_vs_snr.csv",delimiter=',',skip_header=1,names=['snr','c1','c2','c3','c4','c5'])
+snr_bins = myl_data['snr']
+eff_vs_snr_c1 = myl_data['c1']
+eff_vs_snr_c2 = myl_data['c2']
+eff_vs_snr_c3 = myl_data['c3']
+eff_vs_snr_c4 = myl_data['c4']
+eff_vs_snr_c5 = myl_data['c5']
+myl_eff_vs_snr_ave = (frac_uptime[0]*eff_vs_snr_c1) + (frac_uptime[1]*eff_vs_snr_c2) + (frac_uptime[2]*eff_vs_snr_c3) + (frac_uptime[3]*eff_vs_snr_c4) + (frac_uptime[4]*eff_vs_snr_c5)
+ax2.plot(snr_bins,myl_eff_vs_snr_ave, label='Analysis A',linestyle='--',linewidth=5, color='red')
+
+tb_data = np.genfromtxt("tb_eff_vs_snr.csv",delimiter=',',skip_header=1,names=['snr','eff'])
+snr_bins = tb_data['snr']
+tb_eff = tb_data['eff']
+ax2.plot(snr_bins,tb_eff, label='Testbed Analysis',linestyle='-',linewidth=5, color='grey')
+
+
+
+
+
 '''
 x_label = ['trig', 'offset', 'nchnl', 'CW', 'thermal', 'thermal_imp', 'cal', 'surface']
 pass_rate = []
@@ -159,15 +192,24 @@ for row in range(row_count):
 #ax.semilogy()
 
 #ax.set_yscale('log')
-ax.set_xlim(16-9,21-9)
+ax.set_xlim(16.5-9,20.5-9)
 ax.set_ylim(2e-2,1.1)
 ax.set_xlabel('log(E/GeV)', fontsize=30)
 ax.set_ylabel('Signal Efficiency', fontsize=30)
-#ax.set_title(STATION+' Config '+TYPE+' Signal Efficieny')
-ax.set_title('A2 Signal Efficiency', fontsize=30)
+ax.set_title('A2 Efficiency vs Energy', fontsize=30)
 ax.grid(which='both',axis='y')
 ax.yaxis.set_tick_params(labelsize=26)
 ax.xaxis.set_tick_params(labelsize=26)
+
+
+ax2.set_ylim(2e-2,1.1)
+ax2.set_xlabel('SNR', fontsize=30)
+ax2.set_ylabel('Signal Efficiency', fontsize=30)
+ax2.set_title('A2 Efficiency vs SNR', fontsize=30)
+ax2.grid(which='both',axis='y')
+ax2.yaxis.set_tick_params(labelsize=26)
+ax2.xaxis.set_tick_params(labelsize=26)
+
 
 '''
 ax.set_yscale('log')
@@ -181,7 +223,8 @@ ax.set_ylabel('signal efficiency', fontsize=18)
 ax.set_title(STATION+' config '+TYPE+' signal efficieny')
 ax.grid(which='both',axis='y')
 '''
-plt.legend(loc='upper left', fontsize=26)
+ax.legend(loc='upper left', fontsize=26)
+# ax2.legend(loc='upper left', fontsize=26)
 plt.tight_layout()
 PWD = get_script_path()
 #plt.savefig(PWD+'/'+STATION+'_type'+TYPE+'_signalEfficiencyLineAlongCuts.png', bbox_inches='tight')
