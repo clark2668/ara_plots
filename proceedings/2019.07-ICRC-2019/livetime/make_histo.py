@@ -22,12 +22,14 @@ def main():
 	ax_a2.hist([years_and_months],bins=bins,weights=data['A2Frac'],range=(start_year,stop_year),edgecolor='black',color='darkseagreen',histtype='stepfilled')
 	#, ,fill=False, stacked=True, histtype='step', color='red', linewidth=4, label='Testbed')
 	ax_a2.set_ylabel('A2 Fractional Uptime', size=11)
+	ax_a2.set_xlabel('Year', size=11)
 	ax_a2.text(0.99, 0.90, '1142 Days', horizontalalignment='right', verticalalignment='center', transform=ax_a2.transAxes,size=11)
 
 	
 	ax_a3=fig.add_subplot(num_total,2,2)
 	ax_a3.hist([years_and_months],bins=bins,weights=data['A3Frac'],range=(start_year,stop_year),edgecolor='black',color='darkseagreen',histtype='stepfilled')
 	ax_a3.set_ylabel('A3 Fractional Uptime', size=11)
+	ax_a3.set_xlabel('Year', size=11)
 	ax_a3.text(0.99, 0.90, '1078 Days', horizontalalignment='right', verticalalignment='center', transform=ax_a3.transAxes,size=11)
 
 
