@@ -43,6 +43,8 @@ def main():
 	fig = plt.figure(figsize=(10*1.5,10*1.5))
 	ax=fig.add_subplot(111)
 
+	sizer=45
+
 	ax.plot(xs,ys,'o',color='gray',markersize=6,linewidth=0)
 	ax.plot(A1[0],A1[1], "bo", label="A1", markersize=24)
 	ax.plot(A2[0],A2[1], "go", label="A2", markersize=24)
@@ -53,23 +55,23 @@ def main():
 	# ax.patches.Circle(A5[0],A5[1],radius=2)
 	# ax.scatter(A5[0],A5[1], s=40, facecolor='none', edgecolor='m')
 
-	ax.text(13.7 ,16.6, 'IceCube', horizontalalignment='left', verticalalignment='center', size=24, color='gray', fontweight='bold')
-	ax.text(12 ,15.7, 'A1', horizontalalignment='left', verticalalignment='center', size=24, color='b', fontweight='bold')
-	ax.text(11 ,14.2, 'A2', horizontalalignment='left', verticalalignment='center', size=24, color='g', fontweight='bold')
-	ax.text(10 ,15.7, 'A3', horizontalalignment='left', verticalalignment='center', size=24, color='r', fontweight='bold')
-	ax.text(11 ,17.6, 'A4', horizontalalignment='left', verticalalignment='center', size=24, color='c', fontweight='bold')
-	ax.text(10 ,12.3, 'A5+PA', horizontalalignment='left', verticalalignment='center', size=24, color='m', fontweight='bold')
+	ax.text(13.5 ,16.6, 'IceCube', horizontalalignment='left', verticalalignment='center', size=sizer, color='gray')
+	ax.text(12 ,15.7, 'A1', horizontalalignment='left', verticalalignment='center', size=sizer, color='b')
+	ax.text(11 ,14.2, 'A2', horizontalalignment='left', verticalalignment='center', size=sizer, color='g')
+	ax.text(10 ,15.7, 'A3', horizontalalignment='left', verticalalignment='center', size=sizer, color='r')
+	ax.text(11 ,17.6, 'A4', horizontalalignment='left', verticalalignment='center', size=sizer, color='c')
+	ax.text(10 ,12.3, 'A5+PA', horizontalalignment='left', verticalalignment='center', size=sizer, color='m')
 
 	# ax.legend()
 
-	ax.set_xlabel('Easting (km)',size=30)
-	ax.set_ylabel('Northing (km)',size=30)
-	ax.tick_params(labelsize=30,pad=10)
+	ax.set_xlabel('Easting (km)',size=sizer)
+	ax.set_ylabel('Northing (km)',size=sizer)
+	ax.tick_params(labelsize=sizer,pad=10)
 
 	ax.set_xlim(9,15)
 	ax.set_ylim(11.5,18)
 
-	fig.savefig("ara_map.png",edgecolor='none',bbox_inches="tight",dpi=300)
+	fig.savefig("ara_map.pdf",edgecolor='none',bbox_inches="tight",dpi=300)
 
 #actually execute the main function
 main()
