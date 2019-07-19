@@ -23,7 +23,7 @@ def main():
 	#, ,fill=False, stacked=True, histtype='step', color='red', linewidth=4, label='Testbed')
 	ax_a2.set_ylabel('A2 Fractional Livetime', size=11)
 	ax_a2.set_xlabel('Year', size=11)
-	ax_a2.text(0.99, 0.90, '1142 Days', horizontalalignment='right', verticalalignment='center', transform=ax_a2.transAxes,size=11)
+	ax_a2.text(0.99, 0.90, '1107 Days', horizontalalignment='right', verticalalignment='center', transform=ax_a2.transAxes,size=11)
 
 	
 	ax_a3=fig.add_subplot(num_total,2,2)
@@ -35,9 +35,9 @@ def main():
 
 	ax_list = fig.axes
 	for ax in ax_list:
-		# ax.set_xlim([start_year-.3,stop_year+0.3]) #set the x limits of the plot
+		ax.set_xlim([start_year,stop_year]) #set the x limits of the plot
 		ax.xaxis.set_ticks(np.arange(start_year, stop_year+1, 1))
-		ax.set_ylim([0,1.2]) #set the x limits of the plot
+		ax.set_ylim([0,1.2]) #set the y limits of the plot
 		ax.set_xticklabels(['2013','2014','2015','2016','2017'], size=12)
 		ax.yaxis.set_ticks([0.5,1])
 		ax.set_yticklabels(['0.5','1.0'], size=12)
