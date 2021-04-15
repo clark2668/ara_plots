@@ -14,6 +14,6 @@ ax.plot(date,livetime,'o')
 ax.tick_params(labelsize=14)
 ax.grid(True,'major','x',linestyle='--');
 ax.set_xlabel('Year',size=14)
-ax.set_ylabel(r'Total Accumulated Livetime [years]', size=14)
+ax.set_ylabel(r'Total Accumulated Livetime [station-years]', size=14)
 plt.tight_layout()
 fig.savefig('livetime_vs_time.png',edgecolor='none',bbox_inches="tight",dpi=300, w_pad=1.5)
